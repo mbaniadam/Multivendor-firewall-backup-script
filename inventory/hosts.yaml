@@ -1,0 +1,44 @@
+---
+FW1:
+  hostname: 192.168.1.112
+  username: admin
+  password: admin
+  port: 22
+  platform: junos
+  data:
+      site: 1
+      role: firewall
+      type: network_device
+
+FW2:
+  hostname: 192.168.1.113
+  username: admin
+  password: admin
+  port: 22
+  platform: fortinet
+  data:
+      site: 2
+      role: firewall
+      type: ssh
+
+FW3_http:
+  hostname: 192.168.1.114
+  username: 
+  password: "9c86xxxxxxxxxxxxxxxtsqG5" # access token
+  port: 443
+  platform: fortinet
+  data:
+      site: 3
+      role: firewall
+      type: http
+
+FW4:
+  hostname: 192.168.1.115
+  username: 
+  password: "9c86xxxxxxxxxxxxxxxtsqG5" # access token
+  port: 22
+  platform: cisco_ftd
+  data:
+      site: 4
+      role: firewall
+      type: ssh
