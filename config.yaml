@@ -1,0 +1,12 @@
+# config.yaml
+---
+inventory:
+       plugin: SimpleInventory
+       options:
+            host_file: 'Backup_Scripts\Nornir\inventory\hosts.yaml'
+            group_file: 'Backup_Scripts\Nornir\inventory\groups.yaml'
+            defaults_file: 'Backup_Scripts\Nornir\inventory\default.yaml'
+runner:
+       plugin: threaded
+       options:
+            num_workers: 2
