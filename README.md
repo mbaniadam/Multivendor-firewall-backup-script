@@ -5,7 +5,7 @@ Methods:
 HTTP , SSH
 
 Vendors:
-Juniper
-Fortinet
+Juniper,
+Fortinet,
 Cisco Firepower FTD
 
