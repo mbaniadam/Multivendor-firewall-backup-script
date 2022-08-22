@@ -8,4 +8,4 @@ Current Vendors: Juniper, Fortinet, Cisco Firepower FTD
 
 
 
-![image](https://user-images.githubusercontent.com/75830370/185911617-eee868c8-0b60-45fd-bfea-9775f8012844.png)
+![Screenshot 2022-08-22 160338](https://user-images.githubusercontent.com/75830370/185911738-11a9df61-c6fc-4493-8e8b-eed6613126d7.png)
