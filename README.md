@@ -1,10 +1,10 @@
 # Auto-MultiVendor-Backup
-Backup multi vendor devices configuration with python script
+Backup multi vendor devices configuration with Nornir and RestAPI
 
 Methods:
-HTTP , SSH
+RestAPI , SSH
 
-Vendors:
+Current Vendors:
 Juniper,
 Fortinet,
 Cisco Firepower FTD
