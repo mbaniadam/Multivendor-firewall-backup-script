@@ -116,8 +116,7 @@ def get_cisco_ftd_backup() -> Result:
 
 
 if __name__ == "__main__":
-    nr = InitNornir('config.yaml',
-                    core={"raise_on_error": True})
+    nr = InitNornir('config.yaml')
     BACKUP_DIR = "."
     dateTime = datetime.datetime.today().strftime('%Y_%m_%d_%H_%M')
     get_juniper_backups()
