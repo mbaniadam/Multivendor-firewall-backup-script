@@ -38,11 +38,12 @@ def get_juniper_backups() -> Result:
                 task=netmiko_send_command,
                 command_string="show config | display set", severity_level=logging.DEBUG)
             print_result(backup_results)
-            for hostname in backup_results:
-                save_config_to_file(
-                    type="ssh",
-                    hostname=hostname,
-                    config=backup_results[hostname][0].result,)
+            for host in backup_results:
+                if host not in backup_results.failed_hosts:
+                    save_config_to_file(
+                        type="ssh",
+                        hostname=host,
+                        config=backup_results[host][0].result,)
         else:
             print("No device found!")
     except NornirExecutionError:
@@ -82,10 +83,11 @@ def get_fortinet_ssh_backup() -> Result:
                 command_string="show", severity_level=logging.DEBUG)
             print_result(backup_results)
             for host in backup_results:
-                save_config_to_file(
-                    type="ssh",
-                    hostname=host,
-                    config=backup_results[host][0].result,)
+                if host not in backup_results.failed_hosts:
+                    save_config_to_file(
+                        type="ssh",
+                        hostname=host,
+                        config=backup_results[host][0].result,)
         else:
             print("No device found!")
     except NornirExecutionError:
@@ -102,10 +104,11 @@ def get_cisco_ftd_backup() -> Result:
                 command_string="show running-config", severity_level=logging.DEBUG)
             print_result(backup_results)
             for host in backup_results:
-                save_config_to_file(
-                    type="ssh",
-                    hostname=host,
-                    config=backup_results[host][0].result,)
+                if host not in backup_results.failed_hosts:
+                    save_config_to_file(
+                        type="ssh",
+                        hostname=host,
+                        config=backup_results[host][0].result,)
         else:
             print("No device found!")
     except NornirExecutionError:
