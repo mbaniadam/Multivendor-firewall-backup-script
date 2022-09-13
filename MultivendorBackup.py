@@ -32,11 +32,13 @@ def save_config_to_file(type, hostname, config):
 def get_juniper_backups() -> Result:
     print("**************************** Juniper_SSH ****************************")
     try:
-        junos = nr.filter(platform="junos")
+        junos = nr.filter(platform="juniper_junos")
+        screenos = nr.filter(platform="juniper_screenos")
         if junos.inventory.hosts:
+            print(f"{junos.inventory.hosts} reading configuration. Please wait...")
             backup_results = junos.run(
                 task=netmiko_send_command,
-                command_string="show config | display set", severity_level=logging.DEBUG)
+                command_string="show config | display set", read_timeout=120, severity_level=logging.DEBUG)
             print_result(backup_results)
             for host in backup_results:
                 if host not in backup_results.failed_hosts:
@@ -44,11 +46,24 @@ def get_juniper_backups() -> Result:
                         type="ssh",
                         hostname=host,
                         config=backup_results[host][0].result,)
+        if screenos.inventory.hosts:
+            print(f"{screenos.inventory.hosts} reading configuration. Please wait...")
+            backup_results = screenos.run(
+                task=netmiko_send_command,
+                command_string="get config", read_timeout=120, severity_level=logging.DEBUG)
+            print_result(backup_results)
+            for host in backup_results:
+                if host not in backup_results.failed_hosts:
+                    save_config_to_file(
+                        type="ssh",
+                        hostname=host,
+                        config=backup_results[host][0].result,)            
         else:
             print("No device found!")
     except NornirExecutionError:
         print("Nornir Error")
 
+        
 def get_fortinet_backups() -> Result:
     print("**************************** Fortinet_HTTP ****************************")
     try:
@@ -78,6 +93,7 @@ def get_fortinet_ssh_backup() -> Result:
     try:
         fortinet_ssh = nr.filter(platform="fortinet", type="ssh")
         if fortinet_ssh.inventory.hosts:
+            print(f"{fortinet_ssh.inventory.hosts} reading configuration. Please wait...")
             backup_results = fortinet_ssh.run(
                 task=netmiko_send_command,
                 command_string="show", severity_level=logging.DEBUG)
@@ -99,6 +115,7 @@ def get_cisco_ftd_backup() -> Result:
     try:
         cisco_ftd = nr.filter(platform="cisco_ftd", type="ssh")
         if cisco_ftd.inventory.hosts:
+            print(f"{cisco_ftd.inventory.hosts} reading configuration. Please wait...")
             backup_results = cisco_ftd.run(
                 task=netmiko_send_command,
                 command_string="show running-config", severity_level=logging.DEBUG)
