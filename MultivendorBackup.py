@@ -48,17 +48,20 @@ def get_juniper_backups() -> Result:
                         config=backup_results[host][0].result,)
         if screenos.inventory.hosts:
             print(f"{screenos.inventory.hosts} reading configuration. Please wait...")
+            screenos.run(task=netmiko_send_command,command_string="set console page 0")
             backup_results = screenos.run(
                 task=netmiko_send_command,
-                # expect_string=r"--- more ---" >>> After the get config command, we must enter the space key to continue displaying the output
-                command_string="get config",expect_string=r"--- more ---", read_timeout=120, severity_level=logging.DEBUG)
+                # expect_string=r"--- more ---" >>> 
+                # After the get config command, we must enter the space key to continue displaying the output
+                command_string="get config",expect_string=r">",read_timeout=120, severity_level=logging.DEBUG)
+            screenos.run(task=netmiko_send_command,command_string="unset console page")
             print_result(backup_results)
             for host in backup_results:
                 if host not in backup_results.failed_hosts:
                     save_config_to_file(
                         type="ssh",
                         hostname=host,
-                        config=backup_results[host][0].result,)            
+                        config=backup_results[host][0].result,)                    
         else:
             print("No device found!")
     except NornirExecutionError:
