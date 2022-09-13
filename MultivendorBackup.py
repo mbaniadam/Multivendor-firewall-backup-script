@@ -50,7 +50,8 @@ def get_juniper_backups() -> Result:
             print(f"{screenos.inventory.hosts} reading configuration. Please wait...")
             backup_results = screenos.run(
                 task=netmiko_send_command,
-                command_string="get config", read_timeout=120, severity_level=logging.DEBUG)
+                # expect_string=r"--- more ---" >>> After the get config command, we must enter the space key to continue displaying the output
+                command_string="get config",expect_string=r"--- more ---", read_timeout=120, severity_level=logging.DEBUG)
             print_result(backup_results)
             for host in backup_results:
                 if host not in backup_results.failed_hosts:
