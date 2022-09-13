@@ -4,7 +4,7 @@ FW1:
   username: admin
   password: admin
   port: 22
-  platform: junos
+  platform: juniper_junos
   data:
       site: 1
       role: firewall
@@ -42,3 +42,14 @@ FW4:
       site: 4
       role: firewall
       type: ssh
+
+FW5:
+  hostname: 192.168.1.112
+  username: admin
+  password: admin
+  port: 22
+  platform: juniper_screenos
+  data:
+      site: 5
+      role: firewall
+      type: network_device
