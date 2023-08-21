@@ -50,6 +50,7 @@ def save_config_to_file(dev_type, hostname, config):
             print(f"{hostname} >>> backup file was created successfully!")
             config_file.close()
         elif dev_type == "http":
+            urllib3.disable_warnings()
             with open(os.path.join(BACKUP_DIR, filename), "wb") as config_file:
                 config_file.write(config.content)
             print(f"{hostname} >>> backup file was created successfully!")
@@ -112,7 +113,6 @@ def get_fortinet_backups() -> Result:
                 hostname = fortinet_http.inventory.hosts[host].hostname
                 port = fortinet_http.inventory.hosts[host].port
                 access_token = fortinet_http.inventory.hosts[host].password
-                urllib3.disable_warnings()
                 forti_url = f"https://{hostname}:{port}/api/v2/monitor/system/config/backup?scope=global"
                 # print(forti_url)
                 headers = {"Authorization": "Bearer " + access_token, }
@@ -182,8 +182,8 @@ if __name__ == "__main__":
     nr = InitNornir('config.yaml')
     BACKUP_DIR = "."
     dateTime = datetime.datetime.today().strftime('%Y_%m_%d_%H_%M')
-    # get_juniper_backups()
+    get_juniper_backups()
     get_fortinet_backups()
-    # get_fortinet_ssh_backup()
-    # get_cisco_ftd_backup()
-    # we create the first bar named napalm_get_bar
+    get_fortinet_ssh_backup()
+    get_cisco_ftd_backup()
+    
