@@ -3,9 +3,9 @@
 inventory:
        plugin: SimpleInventory
        options:
-            host_file: 'Backup_Scripts\Nornir\inventory\hosts.yaml'
-            group_file: 'Backup_Scripts\Nornir\inventory\groups.yaml'
-            defaults_file: 'Backup_Scripts\Nornir\inventory\default.yaml'
+            host_file: 'inventory\hosts.yaml'
+            group_file: 'inventory\groups.yaml'
+            defaults_file: 'inventory\default.yaml'
 runner:
        plugin: threaded
        options:
