@@ -117,7 +117,10 @@ def get_fortinet_backups() -> Result:
                 # print(forti_url)
                 headers = {"Authorization": "Bearer " + access_token, }
                 data = make_api_request(forti_url, "GET", headers)
-                save_config_to_file(dev_type="http", hostname=host, config=data)
+                if data.status_code == 200:
+                    save_config_to_file(dev_type="http", hostname=host, config=data)
+                else:
+                    print(data.status_code, data.reason)
         else:
             print("No device found!")
     except NornirExecutionError as nornir_error:
