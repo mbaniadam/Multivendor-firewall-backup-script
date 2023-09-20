@@ -1,4 +1,4 @@
-# Multi-Vendor Firewall Backup Script
+# Multivendor firewall backup script
 This script is designed to automate the backup process of configurations for Multi-Vendor Firewalls. It utilizes the Nornir framework along with Netmiko to retrieve and save configurations from Juniper (Junos OS and ScreenOS), Fortinet, and Cisco Firepower FTD devices. The script supports both RestAPI and SSH methods for retrieving configurations, making it versatile and adaptable to different firewall models.
 ### Prerequisites
 Before using this script, ensure you have the following prerequisites in place:
