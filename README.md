@@ -47,7 +47,7 @@ Update the inventory file (inventory.yaml) with your firewall device details.
 Run the script using the following command:
 
 ```console
-python backup_script.py
+python MultivendorBackup.py
 ```
 The script will connect to each device based on the provided inventory and retrieve and save their configurations in separate text files.
 ### Supported Vendors and Methods
