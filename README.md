@@ -55,13 +55,16 @@ The script will connect to each device based on the provided inventory and retri
 Juniper:
 
 -Junos OS
+
 -ScreenOS
 Fortinet
 
 Cisco Firepower FTD
 
-Methods:
+**Methods:**
 RestAPI
 SSH
+
+
 ![Screenshot 2022-08-22 160338](https://user-images.githubusercontent.com/75830370/185911967-e7b802ae-51a7-4643-812c-124f152bc18b.png)
 
