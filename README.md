@@ -54,10 +54,12 @@ The script will connect to each device based on the provided inventory and retri
 **Vendors:**
 Juniper:
 
--Junos OS
+- Junos OS
+- ScreenOS
+  
+Fortinet:
+- FortiGate
 
--ScreenOS
-Fortinet
 
 Cisco Firepower FTD
 
